@@ -1,6 +1,6 @@
 # RealTime project for Module 4 at the Turing School
 
-This is a polling app utilizing web sockets for real-time interactions. The base of this repo was cloned from /@applegrain for node and webpack set up.
+This is a polling app utilizing web sockets for real-time interactions. The base of this repo was cloned from [applegrain](https://github.com/applegrain) for node and webpack set up.
 
 ## 0. Up and Running
 
