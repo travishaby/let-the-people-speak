@@ -10,11 +10,14 @@
     <form role="form" action="/" method="post">
       Poll Name:<br>
       <input type="text" name="poll[name]" placeholder="enter a name"><br>
-      Poll Question:<br>
-      <input type="text" name="poll[question]" placeholder="enter a question"><br><br>
+      Poll Question 1:<br>
+      <input class="question" data-id="1" type="text" name="poll[question1]" placeholder="enter a question">
+      <br>
+      <br>
       <input type="submit" value="Submit">
     </form>
 
   </body>
-  <script src="main.bundle.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="client.js"></script>
 </html>
