@@ -1,10 +1,12 @@
+var socket = io();
+
 $(document).ready(function(){
   $('.question').on('click', function() {
     appendQuestionField(this);
   });
 });
 
-function appendQuestionField(button){
+function appendQuestionField(button) {
   var number = $('.question').length + 1;
   var newQuestion = '<br> Poll Question '
                     + number + ':<br><input class="question" data-id="'
@@ -20,3 +22,7 @@ function addClickListenerToLastButton() {
     appendQuestionField(this);
   });
 }
+
+socket.on('usersConnected', function(count) {
+  console.log('Connected Users: ' + count);
+});
