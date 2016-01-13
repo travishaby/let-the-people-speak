@@ -30,7 +30,5 @@ const io = socketIO(server);
 io.on('connection', function (socket) {
   console.log('A user has connected.', io.engine.clientsCount);
 
-  io.on('disconnect', function (socket) {
-    console.log('A user has disconnected.', io.engine.clientsCount);
-  })
+  io.sockets.emit('usersConnected', io.engine.clientsCount);
 });
