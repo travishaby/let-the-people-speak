@@ -20,3 +20,5 @@ function addClickListenerToLastButton() {
     appendQuestionField(this);
   });
 }
+
+var socket = io();
