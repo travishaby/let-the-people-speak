@@ -1,3 +1,13 @@
 <h1>This is the admin page</h1>
 
-{{ pollQuestions }}
+<h2>{{ pollQuestions.name }}</h2>
+
+<p>Submit your answer to the poll from the question below!</p>
+
+{{#each pollQuestions.questions}}
+<div class=""> {{@key}}
+  <button type="button" name="button">{{this}}</button>
+</div>
+{{/each}}
+
+<script type="text/javascript" src="/admin.js"></script>
