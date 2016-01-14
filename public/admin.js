@@ -10,7 +10,6 @@ $(document).ready(function(){
   adminUrlLink.attr('href', adminUrlLink.text());
 })
 
-
 var socket = io();
 
 socket.on('usersConnected', function(count) {
