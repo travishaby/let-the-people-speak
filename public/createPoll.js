@@ -20,9 +20,3 @@ function addClickListenerToLastButton() {
     appendQuestionField(this);
   });
 }
-
-var socket = io();
-
-socket.on('usersConnected', function(count) {
-  console.log('Connected Users: ' + count);
-});
