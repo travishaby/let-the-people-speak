@@ -25,7 +25,6 @@ app.get('/', function(request, response) {
 });
 
 app.post('/', function(request, response) {
-  console.log(request.body);
   var poll = new Poll(request.body.poll);
   console.log("Poll was created: ", poll, poll.admin_id)
   dataStore[poll.admin_id] = poll;
@@ -33,7 +32,6 @@ app.post('/', function(request, response) {
 });
 
 app.get('/admin/:id', function(request, response) {
-  console.log("This is being sent to the view: ", dataStore[request.params.id]);
   response.render('admin', {
     pollQuestions: dataStore[request.params.id]
   });
