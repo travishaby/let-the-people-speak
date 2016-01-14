@@ -1,12 +1,18 @@
-<h1>This is the admin page</h1>
+<h1>Your poll has been created.</h1>
 
-<h2>{{ pollQuestions.name }}</h2>
+<h5>The two links below are the admin and poll links. To send the poll out,
+copy the poll link and send it to whoever you want to respond.</h5>
 
-<p>Submit your answer to the poll from the question below!</p>
+<ul>
+  <li><strong>Poll Link: </strong><a id="poll-url">{{pollQuestions.poll_url }}</a></li>
+  <li><strong>Admin Link: </strong><a id="admin-url">{{pollQuestions.admin_url }}</a> <strong>(this is the current page)</strong></li>
+</ul>
+
+<h2 id="poll-name">{{ pollQuestions.name }}</h2>
 
 {{#each pollQuestions.questions}}
 <div class=""> {{@key}}
-  <button type="button" name="button">{{this}}</button>
+  <button class="poll-question" type="button" name="button">{{this}}</button>
 </div>
 {{/each}}
 
