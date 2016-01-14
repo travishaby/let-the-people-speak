@@ -1,4 +1,12 @@
-<h1>Poll</h1>
+<h1>Please submit your response to the poll below.</h1>
 
+<h2 id="poll-name">{{ pollName }}</h2>
+
+{{#each pollQuestions}}
+<div class=""> {{@key}}
+  <br>
+  <button class="poll-question" type="button" name="button">{{this}}</button>
+</div>
+{{/each}}
 
 <script type="text/javascript" src="/poll.js"></script>
