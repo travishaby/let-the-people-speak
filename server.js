@@ -1,6 +1,7 @@
 var path = require('path');
 var express = require('express');
 const http = require('http');
+const Poll = require('./poll');
 
 var app = express();
 var PORT = process.env.PORT || 8080;
@@ -11,14 +12,27 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+var dataStore = {};
+
 app.get('/', function(request, response) {
   response.sendFile(__dirname + '/public/index.html');
 });
 
 app.post('/', function(request, response) {
   console.log(request.body);
-  response.sendFile(__dirname + '/public/index.html');
+  var poll = new Poll(request.body.poll);
+  dataStore[poll.id] = poll;
+  response.redirect('/' + poll.admin_url);
 });
+
+app.get('/admin/:id', function(request, response) {
+  response.sendFile(__dirname + '/public/admin.html');
+});
+
+app.get('/poll/:id', function(request, response) {
+  response.sendFile(__dirname + '/public/poll.html');
+});
+
 
 var server = http.createServer(app)
                  .listen(PORT, function () {
