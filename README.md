@@ -25,8 +25,8 @@ $ npm test
 $ npm run test:watch
 ```
 
-Start the dev server:
+Start the server:
 
 ```
-$ npm run dev
+$ npm start
 ```
