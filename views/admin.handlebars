@@ -4,14 +4,15 @@
 copy the poll link and send it to whoever you want to respond.</h5>
 
 <ul>
-  <li><strong>Poll Link: </strong><a id="poll-url">{{pollQuestions.poll_url }}</a></li>
-  <li><strong>Admin Link: </strong><a id="admin-url">{{pollQuestions.admin_url }}</a> <strong>(this is the current page)</strong></li>
+  <li><strong>Poll Link: </strong><a id="poll-url">{{poll.poll_url }}</a></li>
+  <li><strong>Admin Link: </strong><a id="admin-url">{{poll.admin_url }}</a> <strong>(this is the current page)</strong></li>
 </ul>
 
-<h2 id="poll-name">{{ pollQuestions.name }}</h2>
+<h2 id="poll-name">{{ poll.name }}</h2>
 
-{{#each pollQuestions.questions}}
+{{#each poll.questions}}
 <div class=""> {{@key}}
+  <br>
   <button class="poll-question" type="button" name="button">{{this}}</button>
 </div>
 {{/each}}
