@@ -1,4 +1,5 @@
-console.log("poll.js file loaded");
+
+
 
 var socket = io();
 
