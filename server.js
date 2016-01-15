@@ -81,3 +81,5 @@ function incrementOrCreateResponse(poll, pollResponse) {
     poll.responses[pollResponse] = 1;
   }
 }
+
+module.exports = app;
