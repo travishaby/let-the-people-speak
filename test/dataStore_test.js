@@ -7,7 +7,7 @@ const Poll = require('../poll');
 
 var dataStore = new DataStore
 
-describe('dataStore.js', function () {
+describe('DataStore', function () {
   it('has a polls attribute that starts as an empty object', function (done) {
     expect(dataStore.polls).eql({});
     done();
