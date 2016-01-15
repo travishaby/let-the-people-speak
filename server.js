@@ -2,7 +2,6 @@ var PORT = process.env.PORT || 8080;
 const http = require('http');
 const socketIO = require('socket.io');
 const _ = require('lodash');
-const Poll = require('./poll');
 const DataStore = require('./dataStore')
 var path = require('path');
 var express = require('express');
@@ -26,14 +25,13 @@ app.post('/', function(request, response) {
   if (!request.body.poll) { return response
                                       .status(500)
                                       .send("Bad poll data. Try again!") }
-  var poll = new Poll(request.body.poll);
-  dataStore.polls[poll.admin_id] = poll;
+  var poll = dataStore.createPoll(request.body.poll);
   response.redirect('/' + poll.admin_url);
 });
 
 app.get('/admin/:id', function(request, response) {
   response.render('admin', {
-    poll: dataStore.polls[request.params.id]
+    poll: dataStore.findPollByAdminId(request.params.id)
   });
 });
 
