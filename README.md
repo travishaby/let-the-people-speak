@@ -8,7 +8,7 @@ This is a polling app utilizing web sockets for real-time interactions.
 Clone the repo:
 
 ```
-$ git clone git@github.com:applegrain/react-playground.git
+$ git clone git@github.com:travishaby/realtime-polling.git
 ```
 
 Install the dependencies:
