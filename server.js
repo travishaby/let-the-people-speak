@@ -23,6 +23,9 @@ app.get('/', function(request, response) {
 });
 
 app.post('/', function(request, response) {
+  if (!request.body.poll) { return response
+                                      .status(500)
+                                      .send("Bad poll data. Try again!") }
   var poll = new Poll(request.body.poll);
   dataStore.polls[poll.admin_id] = poll;
   response.redirect('/' + poll.admin_url);
