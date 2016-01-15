@@ -12,14 +12,13 @@ describe('DataStore', function () {
     expect(dataStore.polls).eql({});
     done();
   });
-  it('polls are saved in polls by their admin_id', function (done) {
+  it('creates a poll and finds it by its admin_id', function (done) {
     var pollParams = { name: 'test poll',
       questions: {
         question1: 'question1'
       }
     }
-    var poll = new Poll(pollParams);
-    dataStore.polls[poll.admin_id] = poll;
+    var poll = dataStore.createPoll(pollParams);
     expect(dataStore.findPollByAdminId(poll.admin_id)).eql(poll);
     done();
   });
