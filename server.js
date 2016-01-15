@@ -57,7 +57,6 @@ io.on('connection', function (socket) {
   socket.on('message', function (channel, message) {
     if (channel === 'voteCast') {
       var poll = dataStore.findPollByPollId(message.pollId);
-      console.log(message);
       poll.recordResponseIfNewResponder(message);
       socket.emit('pollResponses', poll.responses );
     }
