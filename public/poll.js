@@ -11,10 +11,8 @@ $(document).ready(function(){
   });
 });
 
-if (!Array.prototype.last){ //create last() method but don't overwrite if extant
-    Array.prototype.last = function(){
-        return this[this.length - 1];
-    };
+Array.prototype.last = function(){
+  return this[this.length - 1];
 };
 
 function sendPollResponse(pollResponse) {
