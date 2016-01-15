@@ -38,9 +38,7 @@ app.get('/admin/:id', function(request, response) {
 });
 
 app.get('/poll/:id', function(request, response) {
-  var poll = _.find(_.values(dataStore), function(savedPoll) {
-    return savedPoll.poll_id === request.params.id;
-  })
+  var poll = findPollByPollId(request.params.id, dataStore);
   response.render('poll', {
     pollName: poll.name,
     pollQuestions: poll.questions
@@ -57,4 +55,33 @@ io.on('connection', function (socket) {
   console.log('A user has connected.', io.engine.clientsCount);
 
   io.sockets.emit('usersConnected', io.engine.clientsCount);
+
+  socket.on('message', function (channel, message) {
+    if (channel === 'voteCast') {
+      var poll = findPollByPollId(message.pollId, dataStore);
+      recordResponseIfNewResponder(poll, message);
+      socket.emit('pollResponses', poll.responses );
+    }
+  });
 });
+
+function findPollByPollId(id, dataStore) {
+  return _.find(_.values(dataStore), function(savedPoll) {
+    return savedPoll.poll_id === id;
+  })
+}
+
+function recordResponseIfNewResponder(poll, message) {
+  if (!poll.respondants[message.responder]) {
+    poll.respondants[message.responder] = true;
+    incrementOrCreateResponse(poll, message.pollResponse)
+  }
+}
+
+function incrementOrCreateResponse(poll, pollResponse) {
+  if (poll.responses[pollResponse]){
+    poll.responses[pollResponse]++;
+  } else {
+    poll.responses[pollResponse] = 1;
+  }
+}
