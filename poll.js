@@ -8,6 +8,8 @@ function Poll(pollData) {
   this.poll_id = this.generateId(12);
   this.poll_url = 'poll/' + this.poll_id;
   this.questions = pollData.questions;
+  this.responses = {};
+  this.respondants = {};
 }
 
 Poll.prototype.generateId = function(num) {
