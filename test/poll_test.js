@@ -27,8 +27,20 @@ describe('Poll', function () {
     expect(poll.poll_id.length).eql(24);
     done();
   });
-  it('poll has a name when correct params are passed in', function (done) {
+  it('has a name when correct params are passed in', function (done) {
     expect(poll.name).eql('test poll');
+    done();
+  });
+  it('stores questions when correct params are passed in', function (done) {
+    expect(poll.questions).eql({ question1: 'question1' });
+    done();
+  });
+  it('has empty object literal to store responses', function (done) {
+    expect(poll.responses).eql({});
+    done();
+  });
+  it('has empty object literal to keep track of respondants', function (done) {
+    expect(poll.respondants).eql({});
     done();
   });
 })
