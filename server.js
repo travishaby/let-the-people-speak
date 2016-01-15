@@ -57,4 +57,12 @@ io.on('connection', function (socket) {
   console.log('A user has connected.', io.engine.clientsCount);
 
   io.sockets.emit('usersConnected', io.engine.clientsCount);
+
+  socket.on('message', function (channel, message) {
+    if (channel === 'voteCast') {
+      console.log(channel, message);
+      // socket.emit('voteCount', countVotes(votes));
+    }
+  });
+
 });
