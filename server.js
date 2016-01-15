@@ -57,25 +57,11 @@ io.on('connection', function (socket) {
   socket.on('message', function (channel, message) {
     if (channel === 'voteCast') {
       var poll = dataStore.findPollByPollId(message.pollId);
-      recordResponseIfNewResponder(poll, message);
+      console.log(message);
+      poll.recordResponseIfNewResponder(message);
       socket.emit('pollResponses', poll.responses );
     }
   });
 });
-
-function recordResponseIfNewResponder(poll, message) {
-  if (!poll.respondants[message.responder]) {
-    poll.respondants[message.responder] = true;
-    incrementOrCreateResponse(poll, message.pollResponse)
-  }
-}
-
-function incrementOrCreateResponse(poll, pollResponse) {
-  if (poll.responses[pollResponse]){
-    poll.responses[pollResponse]++;
-  } else {
-    poll.responses[pollResponse] = 1;
-  }
-}
 
 module.exports = app;
