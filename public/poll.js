@@ -17,9 +17,9 @@ Array.prototype.last = function(){
 
 function sendPollResponse(pollResponse) {
   var pollId = window.location.pathname.split('/').last();
-  console.log(pollResponse, pollId);
   socket.send('voteCast', {
           pollId: pollId,
-    pollResponse: pollResponse
+    pollResponse: pollResponse,
+       responder: socket.id
   });
 }
