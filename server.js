@@ -1,3 +1,4 @@
+var PORT = process.env.PORT || 8080;
 const http = require('http');
 const Poll = require('./poll');
 const socketIO = require('socket.io');
@@ -6,17 +7,12 @@ var path = require('path');
 var express = require('express');
 var bodyParser = require('body-parser');
 var exphbs  = require('express-handlebars');
-
 var app = express();
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
-
-var PORT = process.env.PORT || 8080;
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 var dataStore = {};
@@ -85,3 +81,5 @@ function incrementOrCreateResponse(poll, pollResponse) {
     poll.responses[pollResponse] = 1;
   }
 }
+
+module.exports = app;
