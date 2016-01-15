@@ -11,6 +11,10 @@ $(document).ready(function(){
   });
 });
 
+socket.on('pollResponses', function(pollResponses){
+  console.log(pollResponses);
+})
+
 Array.prototype.last = function(){
   return this[this.length - 1];
 };
