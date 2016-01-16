@@ -38,8 +38,8 @@ app.get('/admin/:id', function(request, response) {
 app.get('/poll/:id', function(request, response) {
   var poll = dataStore.findPollByPollId(request.params.id);
   response.render('poll', {
-    pollName: poll.name,
-    pollQuestions: poll.questions
+    pollQuestion: poll.question,
+    pollChoices: poll.choices
   });
 });
 

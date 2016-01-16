@@ -13,9 +13,9 @@ describe('DataStore', function () {
     done();
   });
   it('creates a poll and finds it by its admin_id', function (done) {
-    var pollParams = { name: 'test poll',
-      questions: {
-        question1: 'question1'
+    var pollParams = { question: 'test poll',
+      choices: {
+        choice1: 'choice1'
       }
     }
     var poll = dataStore.createPoll(pollParams);
@@ -23,9 +23,9 @@ describe('DataStore', function () {
     done();
   });
   it('can find saved polls by the poll_id', function (done) {
-    var pollParams = { name: 'test poll',
-      questions: {
-        question1: 'question1'
+    var pollParams = { question: 'test poll',
+      choices: {
+        choice1: 'choice1'
       }
     }
     var poll = new Poll(pollParams);

@@ -1,11 +1,11 @@
 {
-  "name": "real-time-polling",
+  "question": "real-time-polling",
   "version": "1.0.0",
   "description": "project using websockets",
   "main": "server.js",
   "scripts": {
     "test": "node_modules/.bin/mocha",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
