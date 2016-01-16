@@ -1,5 +1,5 @@
 {
-  "name": "real-time-polling",
+  "question": "real-time-polling",
   "version": "1.0.0",
   "description": "project using websockets",
   "main": "server.js",
