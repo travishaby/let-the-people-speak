@@ -16,5 +16,18 @@ socket.on('usersConnected', function(count) {
 
 var pollId = $('#poll-id').text();
 socket.on('pollResponse-' + pollId, function(pollResponses){
-  console.log(pollResponses);
-})
+  updatePollResultsOnPage(pollResponses);
+});
+
+function updatePollResultsOnPage(pollResponses) {
+  var rows = $.map(pollResponses, function(value, key){
+    return '<tr><td>' + key + '</td><td>' + value + '</td></tr>'
+  });
+  var pollTable = '<table><thead><tr>'
+    + '<th data-field="id">Choices</th>'
+    + '<th data-field="name">Votes Cast</th>'
+    + '</tr></thead><tbody>'
+    + rows
+    + '</tbody></table>';
+  $('#poll-results').empty().append(pollTable);
+}
