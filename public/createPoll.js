@@ -1,22 +1,14 @@
 $(document).ready(function(){
-  $('.question').on('click', function() {
-    appendQuestionField(this);
+  $('.new-choice').on('click', function() {
+    appendChoiceField();
   });
 });
 
-function appendQuestionField(button) {
-  var number = $('.question').length + 1;
-  var newQuestion = '<br> Poll Question '
-                    + number + ':<br><input class="question" data-id="'
-                    + number + '" type="text" name="poll[questions][question'
-                    + number + ']" placeholder="enter a question">';
-  $(button).after(newQuestion).off();
-  addClickListenerToLastButton();
-}
-
-function addClickListenerToLastButton() {
-  var lastButton = $('.question').last();
-  $(lastButton).on('click', function(){
-    appendQuestionField(this);
-  });
+function appendChoiceField() {
+  var number = $('.choice').length + 1;
+  var newChoice = '<br> Poll Choice '
+                    + number + ':<br><input class="choice" type="text"'
+                    + 'name="poll[choices][choice'
+                    + number + ']" placeholder="enter a choice">';
+  $('.choice').last().after(newChoice);
 }

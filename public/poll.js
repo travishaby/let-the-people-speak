@@ -3,11 +3,12 @@ var socket = io();
 socket.on('usersConnected', function(count) {
   console.log('Connected users: ' + count);
 });
-
-$('.poll-question').on('click', function() {
-  var pollResponse = $(this).text();
-  sendPollResponse(pollResponse);
-});
+$(document).ready(function(){
+  $('.poll-choice').on('click', function() {
+    var pollResponse = $(this).text();
+    sendPollResponse(pollResponse);
+  });  
+})
 
 Array.prototype.last = function(){
   return this[this.length - 1];
@@ -31,9 +32,9 @@ function updatePollResultsOnPage(pollResponses) {
   var rows = $.map(pollResponses, function(value, key){
     return '<tr><td>' + key + '</td><td>' + value + '</td></tr>'
   });
-  var pollTable = '<table><thead><tr>'
+  var pollTable = '<table align="center"><thead><tr>'
     + '<th data-field="id">Choices</th>'
-    + '<th data-field="name">Votes Cast</th>'
+    + '<th data-field="question">Votes Cast</th>'
     + '</tr></thead><tbody>'
     + rows
     + '</tbody></table>';
