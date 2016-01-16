@@ -1,7 +1,6 @@
 'use strict';
 var chai = require('chai');
 var expect = chai.expect;
-var should = chai.should();
 var request = require('supertest');
 var server = require('../server.js');
 describe('server.js', function () {

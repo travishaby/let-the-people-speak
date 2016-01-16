@@ -50,15 +50,13 @@ var server = http.createServer(app)
 const io = socketIO(server);
 
 io.on('connection', function (socket) {
-  console.log('A user has connected.', io.engine.clientsCount);
-
   io.sockets.emit('usersConnected', io.engine.clientsCount);
 
   socket.on('message', function (channel, message) {
     if (channel === 'voteCast') {
       var poll = dataStore.findPollByPollId(message.pollId);
       poll.recordResponseIfNewResponder(message);
-      socket.emit('pollResponses', poll.responses );
+      io.sockets.emit('pollResponse-' + message.pollId, poll.responses );
     }
   });
 });
