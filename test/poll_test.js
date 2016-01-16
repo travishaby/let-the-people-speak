@@ -2,7 +2,7 @@
 var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
-const Poll = require('../poll');
+const Poll = require('../lib/poll');
 
 var pollParams = { name: 'test poll',
   questions: {

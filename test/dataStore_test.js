@@ -2,8 +2,8 @@
 var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
-const DataStore = require('../dataStore');
-const Poll = require('../poll');
+const DataStore = require('../lib/dataStore');
+const Poll = require('../lib/poll');
 
 var dataStore = new DataStore
 
