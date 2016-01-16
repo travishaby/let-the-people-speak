@@ -30,9 +30,9 @@ describe('server.js', function () {
       .post('/')
       .type('form')
       .send( { poll: {
-          name: 'test poll',
-          questions: {
-            question1: 'question1'
+          question: 'test poll',
+          choices: {
+            choice1: 'choice1'
           }
         }
       } )

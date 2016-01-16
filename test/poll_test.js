@@ -4,9 +4,9 @@ var expect = chai.expect;
 var should = chai.should();
 const Poll = require('../lib/poll');
 
-var pollParams = { name: 'test poll',
-  questions: {
-    question1: 'question1'
+var pollParams = { question: 'test poll',
+  choices: {
+    choice1: 'choice1'
   }
 }
 var poll = new Poll(pollParams)
@@ -27,12 +27,12 @@ describe('Poll', function () {
     expect(poll.poll_id.length).eql(24);
     done();
   });
-  it('has a name when correct params are passed in', function (done) {
-    expect(poll.name).eql('test poll');
+  it('has a question when correct params are passed in', function (done) {
+    expect(poll.question).eql('test poll');
     done();
   });
-  it('stores questions when correct params are passed in', function (done) {
-    expect(poll.questions).eql({ question1: 'question1' });
+  it('stores choices when correct params are passed in', function (done) {
+    expect(poll.choices).eql({ choice1: 'choice1' });
     done();
   });
   it('has empty object literal to store responses', function (done) {

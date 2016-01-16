@@ -1,10 +1,15 @@
 <div id="container"></div>
 
 <form role="form" action="/" method="post">
-  Poll Name:<br>
-  <input type="text" name="poll[name]" placeholder="enter a name"><br>
-  Poll Question 1:<br>
-  <input class="question" data-id="1" type="text" name="poll[questions][question1]" placeholder="enter a question">
+  Poll Question:<br>
+  <input type="text" name="poll[question]" placeholder="enter a name">
+  <br>Poll Choice 1:<br>
+  <input class="choice" type="text" name="poll[choices][choice1]" placeholder="enter a choice">
+  <br>Poll Choice 2:<br>
+  <input class="choice" type="text" name="poll[choices][choice2]" placeholder="enter a choice">
+  <br>
+  <br>
+  <button class="new-choice" type="button" name="button">Add Poll Choice</button>
   <br>
   <br>
   <input type="submit" value="Submit">
