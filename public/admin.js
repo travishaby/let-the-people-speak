@@ -21,6 +21,15 @@ socket.on('pollResponse-' + pollId, function(pollResponses){
   updatePollResultsOnPage(pollResponses);
 });
 
+Array.prototype.last = function(){
+  return this[this.length - 1];
+};
+
+var adminId = window.location.pathname.split('/').last();
+socket.on('pollResponse-' + adminId, function(pollResponses){
+  updatePollResultsOnPage(pollResponses);
+});
+
 function updatePollResultsOnPage(pollResponses) {
   var rows = $.map(pollResponses, function(value, key){
     return '<tr><td>' + key + '</td><td>' + value + '</td></tr>'
