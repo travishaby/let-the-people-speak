@@ -55,7 +55,7 @@ describe('Poll', function () {
     expect(poll.responses).eql({ 'response': 1 });
     done();
   });
-  it('doesnt logs response for known respondant', function (done) {
+  it('doesnt log response for known respondant', function (done) {
     expect(poll.respondants).eql({ '2K89a_ClwNQeN2QsAAAC': true });
     expect(poll.responses).eql({ 'response': 1 });
 
@@ -68,6 +68,10 @@ describe('Poll', function () {
 
     expect(poll.respondants).eql({ '2K89a_ClwNQeN2QsAAAC': true });
     expect(poll.responses).eql({ 'response': 1 });
+    done();
+  });
+  it('has a show respondants field that defaults to false', function (done) {
+    expect(poll.showRespondants).eql(false);
     done();
   });
 })
