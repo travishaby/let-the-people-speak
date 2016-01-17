@@ -26,7 +26,7 @@ app.post('/', function(request, response) {
                                       .status(500)
                                       .send("Bad poll data. Try again!") }
   var poll = dataStore.createPoll(request.body.poll);
-  response.redirect('/' + poll.admin_url);
+  response.redirect('/' + poll.adminUrl);
 });
 
 app.get('/admin/:id', function(request, response) {
@@ -56,9 +56,17 @@ io.on('connection', function (socket) {
     if (channel === 'voteCast') {
       var poll = dataStore.findPollByPollId(message.pollId);
       poll.recordResponseIfNewResponder(message);
-      io.sockets.emit('pollResponse-' + message.pollId, poll.responses );
+      notifyRespondantsIfAllowedAndNotifyAdmin(poll);
     }
   });
 });
+
+function notifyRespondantsIfAllowedAndNotifyAdmin(poll) {
+  if (poll.showRespondants) {
+    io.sockets.emit('pollResponse-' + poll.pollId, poll.responses);
+  } else {
+    io.sockets.emit('pollResponse-' + poll.adminId, poll.responses)
+  }
+}
 
 module.exports = app;
