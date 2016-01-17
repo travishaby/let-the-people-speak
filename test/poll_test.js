@@ -17,14 +17,14 @@ describe('Poll', function () {
     expect(poll.id.length).eql(24);
     done();
   });
-  it('has an admin_id 24 characters long', function (done) {
-    expect(poll.admin_id).be.a('string');
-    expect(poll.admin_id.length).eql(24);
+  it('has an adminId 24 characters long', function (done) {
+    expect(poll.adminId).be.a('string');
+    expect(poll.adminId.length).eql(24);
     done();
   });
-  it('has an poll_id 24 characters long', function (done) {
-    expect(poll.poll_id).be.a('string');
-    expect(poll.poll_id.length).eql(24);
+  it('has an pollId 24 characters long', function (done) {
+    expect(poll.pollId).be.a('string');
+    expect(poll.pollId.length).eql(24);
     done();
   });
   it('has a question when correct params are passed in', function (done) {
