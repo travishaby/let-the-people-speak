@@ -1,7 +1,6 @@
 'use strict';
 var chai = require('chai');
 var expect = chai.expect;
-var should = chai.should();
 var moment = require('moment');
 const Poll = require('../lib/poll');
 

@@ -14,15 +14,15 @@
   <br>
   Poll defaults to close in one hour. Specificy a timeout below:
   <br>
-  <input type="number" name="poll[timeout][number]" min="1" max="10">
-  <select name="poll[timeout][units]">
+  <input id="timeout-number" type="number" name="poll[timeout][number]" min="1" max="10">
+  <select id="timeout-unit" name="poll[timeout][units]">
     <option value="m">Minutes</option>
     <option value="h">Hours</option>
     <option value="d">Days</option>
   </select>
   <br>
   <br>
-  <input type="checkbox" name="poll[showRespondants]" value="true">Show poll respondants the results?
+  <input id="show-respondants" type="checkbox" name="poll[showRespondants]" value="true">Show poll respondants the results?
   <br>
   <br>
   <input type="submit" value="Submit">
