@@ -30,6 +30,20 @@ socket.on('pollResponse-' + adminId, function(pollResponses){
   updatePollResultsOnPage(pollResponses);
 });
 
+$('#close-poll').on('click', function(){
+  socket.send('closePoll-' + adminId, {
+          adminId: adminId,
+        responder: socket.id
+  });
+  socket.on('closePoll-' + adminId, function(){
+    $(this).hide().append('<h3>This poll has closed!</h3>');
+  }.bind(this));
+})
+
+function closePollAndReplaceButtonWithMessage() {
+  return true
+}
+
 function updatePollResultsOnPage(pollResponses) {
   var rows = $.map(pollResponses, function(value, key){
     return '<tr><td>' + key + '</td><td>' + value + '</td></tr>'
