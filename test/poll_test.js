@@ -22,9 +22,10 @@ describe('Poll', function () {
     expect(poll.id.length).eql(24);
     done();
   });
-  it('has an adminId 24 characters long', function (done) {
+  it('has an adminId 25 characters long that ends in a *', function (done) {
     expect(poll.adminId).be.a('string');
-    expect(poll.adminId.length).eql(24);
+    expect(poll.adminId.length).eql(25);
+    expect(poll.adminId.slice(-1)).eql('*');
     done();
   });
   it('has an pollId 24 characters long', function (done) {
