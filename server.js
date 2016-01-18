@@ -37,11 +37,19 @@ app.get('/admin/:id', function(request, response) {
 
 app.get('/poll/:id', function(request, response) {
   var poll = dataStore.findPollByPollId(request.params.id);
-  response.render('poll', {
-    pollQuestion: poll.question,
-    pollChoices: poll.choices
-  });
+  returnPollIfStillActive(response, poll);
 });
+
+function returnPollIfStillActive(response, poll){
+  if (poll.isActive()){
+    response.render('poll', {
+      pollQuestion: poll.question,
+      pollChoices: poll.choices
+    });
+  } else {
+    response.render('closed');
+  }
+};
 
 var server = http.createServer(app)
                  .listen(PORT, function () {
@@ -67,6 +75,6 @@ function notifyRespondantsIfAllowedAndNotifyAdmin(poll) {
   } else {
     io.sockets.emit('pollResponse-' + poll.adminId, poll.responses)
   }
-}
+};
 
 module.exports = app;
