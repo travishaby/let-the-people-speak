@@ -2,6 +2,7 @@
 var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
+var moment = require('moment');
 const Poll = require('../lib/poll');
 
 var pollParams = { question: 'test poll',
@@ -72,6 +73,14 @@ describe('Poll', function () {
   });
   it('has a show respondants field that defaults to false', function (done) {
     expect(poll.showRespondants).eql(false);
+    done();
+  });
+  it('has a created_at that is set when poll object is first created', function (done) {
+    expect(poll.pollCreatedAt).eql(moment.utc().seconds());
+    done();
+  });
+  it('has a poll timeout period that defaults to one hour', function (done) {
+    expect(moment().to(poll.pollTimeout)).eql("one hour");
     done();
   });
 })
