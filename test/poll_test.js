@@ -75,12 +75,12 @@ describe('Poll', function () {
     expect(poll.showRespondants).eql(false);
     done();
   });
-  it('has a created_at that is set when poll object is first created', function (done) {
-    expect(poll.pollCreatedAt).eql(moment.utc().seconds());
+  it('has a createdAt moment.js object, set when poll object is created', function (done) {
+    expect(poll.createdAt.toString()).eql(moment().toString());
     done();
   });
   it('has a poll timeout period that defaults to one hour', function (done) {
-    expect(moment().to(poll.pollTimeout)).eql("one hour");
+    expect(moment().to(poll.timeout)).eql("one hour");
     done();
   });
 })
