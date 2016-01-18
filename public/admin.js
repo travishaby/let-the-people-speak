@@ -35,8 +35,8 @@ $('#close-poll').on('click', function(){
           adminId: adminId,
         responder: socket.id
   });
-  socket.on('closePoll-' + adminId, function(){
-    $(this).hide().append('<h3>This poll has closed!</h3>');
+  socket.on('closePoll-' + adminId, function(closedNotification){
+    $(this).hide().append('<h3>' + closedNotification + '</h3>');
   }.bind(this));
 })
 
