@@ -16,6 +16,10 @@ describe('DataStore', function () {
     var pollParams = { question: 'test poll',
       choices: {
         choice1: 'choice1'
+      },
+      timeout: {
+        number: null,
+        units: null
       }
     }
     var poll = dataStore.createPoll(pollParams);
@@ -26,6 +30,10 @@ describe('DataStore', function () {
     var pollParams = { question: 'test poll',
       choices: {
         choice1: 'choice1'
+      },
+      timeout: {
+        number: null,
+        units: null
       }
     }
     var poll = new Poll(pollParams);

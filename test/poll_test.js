@@ -8,6 +8,10 @@ const Poll = require('../lib/poll');
 var pollParams = { question: 'test poll',
   choices: {
     choice1: 'choice1'
+  },
+  timeout: {
+    number: null,
+    units: null
   }
 }
 var poll = new Poll(pollParams)
@@ -76,11 +80,25 @@ describe('Poll', function () {
     done();
   });
   it('has a createdAt moment.js object, set when poll object is created', function (done) {
-    expect(poll.createdAt.toString()).eql(moment().toString());
+    expect(poll.createdAt.isSameOrBefore(moment()));
     done();
   });
   it('has a poll timeout period that defaults to one hour', function (done) {
-    expect(moment().to(poll.timeout)).eql("one hour");
+    expect(moment().to(poll.timeout)).eql("in an hour");
+    done();
+  });
+  var pollParamsTwo = { question: 'test poll',
+    choices: {
+      choice1: 'choice1'
+    },
+    timeout: {
+      number: 4,
+      units: "h"
+    }
+  }
+  var pollTwo = new Poll(pollParamsTwo)
+  it('can be given a specific timeout with a number and units of measurable time', function (done) {
+    expect(moment().to(pollTwo.timeout)).eql("in 4 hours");
     done();
   });
 })
