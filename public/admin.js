@@ -31,7 +31,7 @@ socket.on('pollResponse-' + adminId, function(pollResponses){
 });
 
 $('#close-poll').on('click', function(){
-  socket.send('closePoll-' + adminId, {
+  socket.send('closePoll'), {
           adminId: adminId,
         responder: socket.id
   });
