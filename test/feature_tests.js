@@ -1,14 +1,20 @@
 var Nightmare = require('nightmare');
 var expect = require('chai').expect;
 
+require('mocha-generators').install()
+
 describe('test filling out a form', function() {
+
+  this.timeout(15000);
+
   it('should be redirected to poll page when poll is submitted', function*() {
     var nightmare = Nightmare()
-    var formInput = yield nightmare
-      .goto('http://localhost:8080')
+    var title = yield nightmare
+      .goto('http://turing.io')
       .evaluate(function () {
-        return document.getElementsById('timeout-number');
+        return document.title;
       });
-    expect(formInput).to.equal('https://github.com/segmentio/nightmare');
+    expect(title).to.equal('Nope');
+    yield nightmare.end()
   });
 });
