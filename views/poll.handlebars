@@ -1,13 +1,15 @@
-<h1>Please submit your response to the poll below.</h1>
+<h1 id="poll-message">Please submit your response to the poll below.</h1>
 
 <h2 id="poll-question">{{ pollQuestion }}</h2>
 
-{{#each pollChoices}}
-<div class=""> {{@key}}
-  <br>
-  <button class="poll-choice" type="button" name="button">{{this}}</button>
+<div id="poll-choice-buttons">
+  {{#each pollChoices}}
+  <div> {{@key}}
+    <br>
+    <button class="poll-choice" type="button" name="button">{{this}}</button>
+  </div>
+  {{/each}}
 </div>
-{{/each}}
 
 <div class="" id="poll-results"></div>
 
