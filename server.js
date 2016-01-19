@@ -58,13 +58,16 @@ var server = http.createServer(app)
 const io = socketIO(server);
 
 io.on('connection', function (socket) {
-  io.sockets.emit('usersConnected', io.engine.clientsCount);
-
   socket.on('message', function (channel, message) {
     if (channel === 'voteCast') {
       var poll = dataStore.findPollByPollId(message.pollId);
       poll.recordResponseIfNewResponder(message);
       notifyRespondantsIfAllowedAndNotifyAdmin(poll);
+    }
+    if (channel === 'closePoll' && message.adminId) {
+      var poll = dataStore.findPollByAdminId(message.adminId);
+      poll.closePoll();
+      io.sockets.emit('closePoll-' + poll.pollId, 'This poll has been closed!');
     }
   });
 });
@@ -73,7 +76,7 @@ function notifyRespondantsIfAllowedAndNotifyAdmin(poll) {
   if (poll.showRespondants) {
     io.sockets.emit('pollResponse-' + poll.pollId, poll.responses);
   } else {
-    io.sockets.emit('pollResponse-' + poll.adminId, poll.responses)
+    io.sockets.emit('pollResponse-' + poll.adminId, poll.responses);
   }
 };
 
