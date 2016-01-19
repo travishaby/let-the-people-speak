@@ -34,7 +34,7 @@ function updatePollResultsOnPage(pollResponses) {
   var rows = $.map(pollResponses, function(value, key){
     return '<tr><td>' + key + '</td><td>' + value + '</td></tr>'
   });
-  var pollTable = '<div class="row" id="poll-results">'
+  var pollTable = '<div class="container row" id="poll-results">'
     + '<table class="table table-striped">'
     + '<thead class="thead-default table-striped"><tr>'
     + '<th data-field="id">Choices</th>'
