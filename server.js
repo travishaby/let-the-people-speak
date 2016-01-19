@@ -30,18 +30,28 @@ app.post('/', function(request, response) {
 });
 
 app.get('/admin/:id', function(request, response) {
+  var poll = dataStore.findPollByAdminId(request.params.id).checkForTimeout();
   response.render('admin', {
-    poll: dataStore.findPollByAdminId(request.params.id)
+    poll: poll
   });
 });
 
 app.get('/poll/:id', function(request, response) {
   var poll = dataStore.findPollByPollId(request.params.id);
-  response.render('poll', {
-    pollQuestion: poll.question,
-    pollChoices: poll.choices
-  });
+  returnPollIfStillActive(response, poll);
 });
+
+function returnPollIfStillActive(response, poll){
+  poll.checkForTimeout();
+  if (poll.active) {
+    response.render('poll', {
+      pollQuestion: poll.question,
+      pollChoices: poll.choices
+    });
+  } else {
+    response.render('closed');
+  }
+};
 
 var server = http.createServer(app)
                  .listen(PORT, function () {
@@ -50,13 +60,15 @@ var server = http.createServer(app)
 const io = socketIO(server);
 
 io.on('connection', function (socket) {
-  io.sockets.emit('usersConnected', io.engine.clientsCount);
-
   socket.on('message', function (channel, message) {
     if (channel === 'voteCast') {
       var poll = dataStore.findPollByPollId(message.pollId);
       poll.recordResponseIfNewResponder(message);
       notifyRespondantsIfAllowedAndNotifyAdmin(poll);
+    }
+    if (channel === 'closePoll' && message.adminId) {
+      var poll = dataStore.findPollByAdminId(message.adminId).closePoll();
+      io.sockets.emit('closePoll-' + poll.pollId, 'This poll has been closed!');
     }
   });
 });
@@ -65,8 +77,8 @@ function notifyRespondantsIfAllowedAndNotifyAdmin(poll) {
   if (poll.showRespondants) {
     io.sockets.emit('pollResponse-' + poll.pollId, poll.responses);
   } else {
-    io.sockets.emit('pollResponse-' + poll.adminId, poll.responses)
+    io.sockets.emit('pollResponse-' + poll.adminId, poll.responses);
   }
-}
+};
 
 module.exports = app;

@@ -33,6 +33,10 @@ describe('server.js', function () {
           question: 'test poll',
           choices: {
             choice1: 'choice1'
+          },
+          timeout: {
+            number: null,
+            units: null
           }
         }
       } )

@@ -12,25 +12,33 @@ describe('DataStore', function () {
     expect(dataStore.polls).eql({});
     done();
   });
-  it('creates a poll and finds it by its admin_id', function (done) {
+  it('creates a poll and finds it by its adminId', function (done) {
     var pollParams = { question: 'test poll',
       choices: {
         choice1: 'choice1'
+      },
+      timeout: {
+        number: null,
+        units: null
       }
     }
     var poll = dataStore.createPoll(pollParams);
-    expect(dataStore.findPollByAdminId(poll.admin_id)).eql(poll);
+    expect(dataStore.findPollByAdminId(poll.adminId)).eql(poll);
     done();
   });
-  it('can find saved polls by the poll_id', function (done) {
+  it('can find saved polls by the pollId', function (done) {
     var pollParams = { question: 'test poll',
       choices: {
         choice1: 'choice1'
+      },
+      timeout: {
+        number: null,
+        units: null
       }
     }
     var poll = new Poll(pollParams);
-    dataStore.polls[poll.admin_id] = poll;
-    expect(dataStore.findPollByPollId(poll.poll_id)).eql(poll);
+    dataStore.polls[poll.adminId] = poll;
+    expect(dataStore.findPollByPollId(poll.pollId)).eql(poll);
     done();
   });
 })

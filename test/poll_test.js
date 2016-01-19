@@ -2,11 +2,16 @@
 var chai = require('chai');
 var expect = chai.expect;
 var should = chai.should();
+var moment = require('moment');
 const Poll = require('../lib/poll');
 
 var pollParams = { question: 'test poll',
   choices: {
     choice1: 'choice1'
+  },
+  timeout: {
+    number: null,
+    units: null
   }
 }
 var poll = new Poll(pollParams)
@@ -17,14 +22,15 @@ describe('Poll', function () {
     expect(poll.id.length).eql(24);
     done();
   });
-  it('has an admin_id 24 characters long', function (done) {
-    expect(poll.admin_id).be.a('string');
-    expect(poll.admin_id.length).eql(24);
+  it('has an adminId 25 characters long that ends in a *', function (done) {
+    expect(poll.adminId).be.a('string');
+    expect(poll.adminId.length).eql(25);
+    expect(poll.adminId.slice(-1)).eql('*');
     done();
   });
-  it('has an poll_id 24 characters long', function (done) {
-    expect(poll.poll_id).be.a('string');
-    expect(poll.poll_id.length).eql(24);
+  it('has an pollId 24 characters long', function (done) {
+    expect(poll.pollId).be.a('string');
+    expect(poll.pollId.length).eql(24);
     done();
   });
   it('has a question when correct params are passed in', function (done) {
@@ -72,6 +78,51 @@ describe('Poll', function () {
   });
   it('has a show respondants field that defaults to false', function (done) {
     expect(poll.showRespondants).eql(false);
+    done();
+  });
+  it('has a createdAt moment.js object, set when poll object is created', function (done) {
+    expect(poll.createdAt.isSameOrBefore(moment()));
+    done();
+  });
+  it('has a poll timeout period that defaults to one hour', function (done) {
+    expect(moment().to(poll.timeout)).eql("in an hour");
+    done();
+  });
+  var pollParamsTwo = { question: 'test poll',
+    choices: {
+      choice1: 'choice1'
+    },
+    timeout: {
+      number: 4,
+      units: "h"
+    }
+  }
+  var pollTwo = new Poll(pollParamsTwo)
+  it('can be given a specific timeout with a number and units of measurable time', function (done) {
+    expect(moment().to(pollTwo.timeout)).eql("in 4 hours");
+    done();
+  });
+  it('has active attribute that starts as true', function (done) {
+    expect(pollTwo.active);
+    done();
+  });
+  it('has closePoll function that is chainable', function (done) {
+    expect(pollTwo.closePoll()).to.eql(pollTwo);
+    done();
+  });
+  it('has closePoll function that turns active to false', function (done) {
+    pollTwo.closePoll();
+    expect(pollTwo.active).to.eql(false);
+    done();
+  });
+  it('has checkForTimeout function that is chainable', function (done) {
+    expect(pollTwo.checkForTimeout()).to.eql(pollTwo);
+    done();
+  });
+  it('checkForTimeout function will turn polls active attribute to false if past timeout', function (done) {
+    pollTwo.active = true;
+    pollTwo.timeout = moment().subtract(1, 'minute');
+    expect(pollTwo.checkForTimeout().active).to.eql(false);
     done();
   });
 })

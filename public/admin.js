@@ -12,10 +12,6 @@ $(document).ready(function(){
 
 var socket = io();
 
-socket.on('usersConnected', function(count) {
-  console.log('Connected users: ' + count);
-});
-
 var pollId = $('#poll-id').text();
 socket.on('pollResponse-' + pollId, function(pollResponses){
   updatePollResultsOnPage(pollResponses);
@@ -29,6 +25,22 @@ var adminId = window.location.pathname.split('/').last();
 socket.on('pollResponse-' + adminId, function(pollResponses){
   updatePollResultsOnPage(pollResponses);
 });
+
+$('#close-poll').on('click', function(){
+  socket.send('closePoll', {
+          adminId: adminId,
+        responder: socket.id
+  });
+  socket.on('closePoll-' + pollId, function(closedNotification){
+    closePollAndReplaceButtonWithMessage(this, closedNotification);
+  }.bind(this));
+})
+
+function closePollAndReplaceButtonWithMessage(button, closedNotification) {
+  $(button).after('<h3 class="poll-closed">'
+                + closedNotification
+                + '</h3>').remove();
+}
 
 function updatePollResultsOnPage(pollResponses) {
   var rows = $.map(pollResponses, function(value, key){
