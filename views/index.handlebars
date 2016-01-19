@@ -1,32 +1,42 @@
-<div id="container"></div>
+<h1 class="center">Create a poll using the form below.</h1>
 
-<form role="form" action="/" method="post">
-  Poll Question:<br>
-  <input type="text" name="poll[question]" placeholder="enter a name">
-  <br>Poll Choice 1:<br>
-  <input class="choice" type="text" name="poll[choices][choice1]" placeholder="enter a choice">
-  <br>Poll Choice 2:<br>
-  <input class="choice" type="text" name="poll[choices][choice2]" placeholder="enter a choice">
-  <br>
-  <br>
-  <button class="new-choice" type="button" name="button">Add Poll Choice</button>
-  <br>
-  <br>
-  Poll defaults to close in one hour. Specificy a timeout below:
-  <br>
-  <input type="number" name="poll[timeout][number]" min="1" max="10">
-  <select name="poll[timeout][units]">
-    <option value="s">Seconds</option>
-    <option value="m">Minutes</option>
-    <option value="h">Hours</option>
-    <option value="d">Days</option>
-  </select>
-  <br>
-  <br>
-  <input type="checkbox" name="poll[showRespondants]" value="true">Show poll respondants the results?
-  <br>
-  <br>
-  <input type="submit" value="Submit">
-</form>
+<p>Once you click submit, you will be directed to the admin page for your new poll</p>
+
+<div class="form-container">
+
+  <div id="container"  class="medium-top-padding"></div>
+
+  <form class="medium-top-padding" role="form" action="/" method="post">
+    <p>Poll Question:</p>
+    <input type="text" name="poll[question]" placeholder="enter a name">
+    <p>Poll Choice 1:</p>
+    <input class="choice" type="text" name="poll[choices][choice1]" placeholder="enter a choice">
+    <p>Poll Choice 2:</p>
+    <input class="choice" type="text" name="poll[choices][choice2]" placeholder="enter a choice">
+    <p></p>
+    <button class="new-choice" type="button" name="button">Add Poll Choice</button>
+    <br>
+    <br>
+    <div class="row">
+      <p>Poll defaults to close in one hour. Specificy a timeout below:</p>
+      <input class="" type="number" name="poll[timeout][number]" min="1" max="10">
+      <select class="" name="poll[timeout][units]">
+        <option value=""></option>
+        <option value="s">Seconds</option>
+        <option value="m">Minutes</option>
+        <option value="h">Hours</option>
+        <option value="d">Days</option>
+      </select>
+    </div>
+    <br>
+    <br>
+    <input type="checkbox" name="poll[showRespondants]" value="true">Show poll respondants the results?
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+
+</div>
+
 
 <script src="/createPoll.js"></script>

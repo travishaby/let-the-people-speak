@@ -6,8 +6,8 @@ $(document).ready(function(){
 
 function appendChoiceField() {
   var number = $('.choice').length + 1;
-  var newChoice = '<br> Poll Choice '
-                    + number + ':<br><input class="choice" type="text"'
+  var newChoice = '<p> Poll Choice '
+                    + number + ':</p><input class="choice" type="text"'
                     + 'name="poll[choices][choice'
                     + number + ']" placeholder="enter a choice">';
   $('.choice').last().after(newChoice);
