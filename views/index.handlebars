@@ -1,32 +1,52 @@
-<div id="container"></div>
+<h1 class="center">Create a poll using the form below.</h1>
 
-<form role="form" action="/" method="post">
-  Poll Question:<br>
-  <input type="text" name="poll[question]" placeholder="enter a name">
-  <br>Poll Choice 1:<br>
-  <input class="choice" type="text" name="poll[choices][choice1]" placeholder="enter a choice">
-  <br>Poll Choice 2:<br>
-  <input class="choice" type="text" name="poll[choices][choice2]" placeholder="enter a choice">
-  <br>
-  <br>
-  <button class="new-choice" type="button" name="button">Add Poll Choice</button>
-  <br>
-  <br>
-  Poll defaults to close in one hour. Specificy a timeout below:
-  <br>
-  <input type="number" name="poll[timeout][number]" min="1" max="10">
-  <select name="poll[timeout][units]">
-    <option value="s">Seconds</option>
-    <option value="m">Minutes</option>
-    <option value="h">Hours</option>
-    <option value="d">Days</option>
-  </select>
-  <br>
-  <br>
-  <input type="checkbox" name="poll[showRespondants]" value="true">Show poll respondants the results?
-  <br>
-  <br>
-  <input type="submit" value="Submit">
-</form>
+<p>Once you click submit, you will be directed to the admin page for your new poll</p>
+
+<div class="form-container well">
+  <form class="form-horizontal " role="form" action="/" method="post">
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <p class="lead">Poll Question:</p>
+        <input class="form-control form-field" type="text" name="poll[question]" placeholder="Enter a question">
+        <p class="lead">Poll Choice 1:</p>
+        <input class="choice form-control form-field" type="text" name="poll[choices][choice1]" placeholder="Enter a choice">
+        <p class="lead">Poll Choice 2:</p>
+        <input class="choice form-control form-field" type="text" name="poll[choices][choice2]" placeholder="Enter a choice">
+        <p class="lead"></p>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-2 form-field">
+        <button class="new-choice btn btn-success" type="button" name="button">Add Poll Choice</button>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-4">
+        <p class="lead">Poll defaults to close in one hour. Specificy a timeout below:</p>
+        <input class="form-control form-field" type="number" name="poll[timeout][number]" min="1" max="10" placeholder="Choose a number">
+        <select class="form-control form-field" name="poll[timeout][units]">
+          <option value="">Unit of time</option>
+          <option value="s">Seconds</option>
+          <option value="m">Minutes</option>
+          <option value="h">Hours</option>
+          <option value="d">Days</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="form-field col-sm-4">
+        <label class="lead">Show poll respondants the results?</label>
+      </div>
+      <div class="col-sm-1">
+        <input class="checkbox form-control" type="checkbox" name="poll[showRespondants]" value="true">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-6">
+        <input class="btn btn-primary" type="submit" value="Create Poll">
+      </div>
+    </div>
+  </form>
+</div>
 
 <script src="/createPoll.js"></script>

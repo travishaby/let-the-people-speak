@@ -30,7 +30,7 @@ socket.on('pollResponse-' + pollId, function(pollResponses){
 
 socket.on('closePoll-' + pollId, function(message){
   $('#poll-choice-buttons').remove();
-  $('#poll-message').text(message);
+  $('#poll-message').addClass("bg-danger").text(message);
 });
 
 function updatePollResultsOnPage(pollResponses) {
