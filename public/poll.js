@@ -1,8 +1,5 @@
 var socket = io();
 
-socket.on('usersConnected', function(count) {
-  console.log('Connected users: ' + count);
-});
 $(document).ready(function(){
   $('.poll-choice').on('click', function() {
     var pollResponse = $(this).text();
@@ -37,11 +34,13 @@ function updatePollResultsOnPage(pollResponses) {
   var rows = $.map(pollResponses, function(value, key){
     return '<tr><td>' + key + '</td><td>' + value + '</td></tr>'
   });
-  var pollTable = '<table align="center"><thead><tr>'
+  var pollTable = '<div class="row" id="poll-results">'
+    + '<table class="table table-striped">'
+    + '<thead class="thead-default table-striped"><tr>'
     + '<th data-field="id">Choices</th>'
     + '<th data-field="question">Votes Cast</th>'
     + '</tr></thead><tbody>'
     + rows
-    + '</tbody></table>';
+    + '</tbody></table></div>';
   $('#poll-results').empty().append(pollTable);
 }

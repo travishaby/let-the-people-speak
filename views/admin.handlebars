@@ -1,40 +1,58 @@
-<h1>Your poll has been created.</h1>
+<div class="container well medium-top-padding">
+  <h1 class="center">Your poll has been created.</h1>
 
-<h5>The two links below are the admin and poll links. To send the poll out,
-copy the poll link and send it to whoever you want to respond.</h5>
+  <h5>The two links below are the admin and poll links. To send the poll out,
+    copy the poll link and send it to whoever you want to respond.</h5>
+</div>
 
 <div hidden="true" id="poll-id">{{poll.pollId}}</div>
 
-<ul>
-  <li><strong>Poll Link: </strong><a id="poll-url">{{poll.pollUrl }}</a></li>
-  <li><strong>Admin Link: </strong><a id="admin-url">{{poll.adminUrl }}</a> <strong>(this is the current page)</strong></li>
-</ul>
-
-<h3 id="poll-question">Results For: <strong>{{ poll.question }}</strong></h3>
-  {{#if poll.active}}
-    <button type="button" id="close-poll">Close Poll</button>
-  {{else}}
-    <h3 class="bg-danger">This poll has closed.</h3>
-  {{/if}}
-<div id="poll-results">
-  {{#if poll.responses}}
-    <table>
-      <thead>
-        <tr>
-          <th data-field="id">Choice</th>
-          <th data-field="choice">Votes Cast</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each poll.responses}}
+<div class="container well">
+  <div class="container row">
+      <div class="lead">
+        <strong>Poll Link: </strong><a id="poll-url">{{poll.pollUrl }}</a>
+      </div>
+      <div class="lead">
+        <strong>Admin Link: </strong><a id="admin-url">{{poll.adminUrl }}</a> <strong>(this is the current page)</strong>
+      </div>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-sm-3 vcenter">
+      <h3 id="poll-question">Results For: <strong>{{ poll.question }}</strong></h3>
+    </div>
+    <div class="col-sm-3 vcenter">
+      {{#if poll.active}}
+        <div class="">
+          <button class="btn btn-danger" type="button" id="close-poll">Close Poll</button>
+        </div>
+      {{else}}
+        <div class="">
+          <h3 class="bg-danger">This poll has closed.</h3>
+        </div>
+      {{/if}}
+    </div>
+  </div>
+  <div class="container row small-top-padding" id="poll-results">
+    {{#if poll.responses}}
+      <table class="table">
+        <thead class="thead-default table-striped">
           <tr>
-            <td> {{@key}} </td>
-            <td> {{this}} </td>
+            <th data-field="id">Choice</th>
+            <th data-field="choice">Votes Cast</th>
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  {{/if}}
+        </thead>
+        <tbody>
+          {{#each poll.responses}}
+            <tr>
+              <td> {{@key}} </td>
+              <td> {{this}} </td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    {{/if}}
+  </div>
 </div>
 
 <script type="text/javascript" src="/admin.js"></script>
