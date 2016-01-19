@@ -16,7 +16,25 @@ copy the poll link and send it to whoever you want to respond.</h5>
   {{else}}
     <h3>This poll has closed.</h3>
   {{/if}}
-<br>
-<div id="poll-results"></div>
+<div id="poll-results">
+  {{#if poll.responses}}
+    <table>
+      <thead>
+        <tr>
+          <th data-field="id">Choice</th>
+          <th data-field="choice">Votes Cast</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each poll.responses}}
+          <tr>
+            <td> {{@key}} </td>
+            <td> {{this}} </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
+</div>
 
 <script type="text/javascript" src="/admin.js"></script>
