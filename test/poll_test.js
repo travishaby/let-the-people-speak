@@ -102,8 +102,8 @@ describe('Poll', function () {
     expect(moment().to(pollTwo.timeout)).eql("in 4 hours");
     done();
   });
-  it('returns whether it is active or not based on createdAt and timeout', function (done) {
-    expect(pollTwo.isActive());
+  it('has active attribute that starts as true', function (done) {
+    expect(pollTwo.active);
     done();
   });
 })
