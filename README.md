@@ -1,7 +1,7 @@
 [![Stories in Ready](https://badge.waffle.io/travishaby/realtime-polling.png?label=ready&title=Ready)](https://waffle.io/travishaby/realtime-polling)
 # RealTime project for Module 4 at the Turing School
 
-This is a polling app utilizing web sockets for real-time interactions. Project spec can be found [here](https://github.com/turingschool/curriculum/blob/master/source/projects/real_time.markdown)
+This is a polling app utilizing web sockets for real-time interactions. Project spec can be found [here](https://github.com/turingschool/curriculum/blob/master/source/projects/real_time.markdown).
 
 ## 0. Production Link
 
