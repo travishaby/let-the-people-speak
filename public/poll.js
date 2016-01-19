@@ -27,7 +27,7 @@ socket.on('pollResponse-' + pollId, function(pollResponses){
 
 socket.on('closePoll-' + pollId, function(message){
   $('#poll-choice-buttons').remove();
-  $('#poll-message').addClass("bg-danger").text(message);
+  $('#poll-message').addClass("alert alert-danger").text(message);
 });
 
 function updatePollResultsOnPage(pollResponses) {

@@ -37,7 +37,7 @@ $('#close-poll').on('click', function(){
 })
 
 function closePollAndReplaceButtonWithMessage(button, closedNotification) {
-  $(button).after('<h3 class="bg-danger">'
+  $(button).after('<h3 class="alert alert-danger">'
                 + closedNotification
                 + '</h3>').remove();
 }
