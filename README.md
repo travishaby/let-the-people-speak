@@ -34,3 +34,18 @@ Start the server:
 ```
 $ npm start
 ```
+
+## 2. Feature Testing
+
+The feature test for this app uses Nightwatch, which requires selenium. Run the command below:
+```
+$ brew install selenium-server-standalone
+```
+Before you run the feature tests, you must have the selenium server running:
+```
+$ selenium-server -port 4444
+```
+Finally, run the feature tests using
+```
+$ nightwatch feature_tests.js
+```
