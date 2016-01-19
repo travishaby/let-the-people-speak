@@ -4,7 +4,15 @@
 .medium-top-padding {
   margin-top: 30px;
 }
-
+.small-top-padding {
+  margin-top: 20px;
+}
 .form-field {
   margin-bottom: 20px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
 }

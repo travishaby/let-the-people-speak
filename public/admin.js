@@ -46,11 +46,12 @@ function updatePollResultsOnPage(pollResponses) {
   var rows = $.map(pollResponses, function(value, key){
     return '<tr><td>' + key + '</td><td>' + value + '</td></tr>'
   });
-  var pollTable = '<table><thead><tr>'
+  var pollTable = '<div class="row" id="poll-results">'
+    + '<table class="table table-striped"><thead><tr>'
     + '<th data-field="id">Choice</th>'
     + '<th data-field="choice">Votes Cast</th>'
     + '</tr></thead><tbody>'
     + rows
-    + '</tbody></table>';
+    + '</tbody></table></div>';
   $('#poll-results').empty().append(pollTable);
 }
