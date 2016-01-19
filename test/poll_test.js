@@ -106,12 +106,16 @@ describe('Poll', function () {
     expect(pollTwo.active);
     done();
   });
+  it('has closePoll function that is chainable', function (done) {
+    expect(pollTwo.closePoll()).to.eql(pollTwo);
+    done();
+  });
   it('has closePoll function that turns active to false', function (done) {
     pollTwo.closePoll();
     expect(pollTwo.active).to.eql(false);
     done();
   });
-  it('checkForTimeout function returns the poll for chainability', function (done) {
+  it('has checkForTimeout function that is chainable', function (done) {
     expect(pollTwo.checkForTimeout()).to.eql(pollTwo);
     done();
   });
