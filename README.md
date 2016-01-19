@@ -43,6 +43,10 @@ Before you run the feature tests, you must have the selenium server running:
 ```
 $ selenium-server -port 4444
 ```
+In order to run `nightwatch` from the command line, run:
+```
+$ npm install -g nightwatch
+```
 Finally, run the feature tests using
 ```
 $ nightwatch feature_tests.js
