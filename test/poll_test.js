@@ -118,8 +118,7 @@ describe('Poll', function () {
   it('checkForTimeout function will turn polls active attribute to false if past timeout', function (done) {
     pollTwo.active = true;
     pollTwo.timeout = moment().subtract(1, 'minute');
-    pollTwo.checkForTimeout();
-    expect(pollTwo.active).to.eql(false);
+    expect(pollTwo.checkForTimeout().active).to.eql(false);
     done();
   });
 })
