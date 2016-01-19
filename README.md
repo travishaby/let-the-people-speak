@@ -25,8 +25,6 @@ Run the tests:
 
 ```
 $ npm test
-||
-$ npm run test:watch
 ```
 
 Start the server:
