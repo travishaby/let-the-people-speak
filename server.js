@@ -30,8 +30,9 @@ app.post('/', function(request, response) {
 });
 
 app.get('/admin/:id', function(request, response) {
+  var poll = dataStore.findPollByAdminId(request.params.id).checkForTimeout();
   response.render('admin', {
-    poll: dataStore.findPollByAdminId(request.params.id)
+    poll: poll
   });
 });
 
@@ -41,7 +42,8 @@ app.get('/poll/:id', function(request, response) {
 });
 
 function returnPollIfStillActive(response, poll){
-  if (poll.isActive()){
+  poll.checkForTimeout();
+  if (poll.active) {
     response.render('poll', {
       pollQuestion: poll.question,
       pollChoices: poll.choices
@@ -65,8 +67,7 @@ io.on('connection', function (socket) {
       notifyRespondantsIfAllowedAndNotifyAdmin(poll);
     }
     if (channel === 'closePoll' && message.adminId) {
-      var poll = dataStore.findPollByAdminId(message.adminId);
-      poll.closePoll();
+      var poll = dataStore.findPollByAdminId(message.adminId).closePoll();
       io.sockets.emit('closePoll-' + poll.pollId, 'This poll has been closed!');
     }
   });
