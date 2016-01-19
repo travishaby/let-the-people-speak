@@ -18,6 +18,9 @@ module.exports = {
       .click('input[value="Create Poll"]')
       .waitForElementVisible('#poll-question', 1000)
       .assert.containsText('#poll-question', 'test question')
+      .assert.containsText('#poll-url', '/poll/')
+      .assert.containsText('#admin-url', '/admin/')
+      .assert.containsText('#close-poll', 'Close Poll')
       .end();
   }
 };
