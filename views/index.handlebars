@@ -3,24 +3,23 @@
 <p>Once you click submit, you will be directed to the admin page for your new poll</p>
 
 <div class="form-container">
-
-  <div id="container"  class="medium-top-padding"></div>
-
-  <form class="medium-top-padding" role="form" action="/" method="post">
-    <p>Poll Question:</p>
-    <input type="text" name="poll[question]" placeholder="enter a name">
-    <p>Poll Choice 1:</p>
-    <input class="choice" type="text" name="poll[choices][choice1]" placeholder="enter a choice">
-    <p>Poll Choice 2:</p>
-    <input class="choice" type="text" name="poll[choices][choice2]" placeholder="enter a choice">
-    <p></p>
-    <button class="new-choice" type="button" name="button">Add Poll Choice</button>
-    <br>
-    <br>
-    <div class="row">
+  <form class="form-horizontal well" role="form" action="/" method="post">
+    <div class="form-group">
+      <p class="lead">Poll Question:</p>
+      <input class="form-control" type="text" name="poll[question]" placeholder="Enter a question">
+      <p class="lead">Poll Choice 1:</p>
+      <input class="choice form-control" type="text" name="poll[choices][choice1]" placeholder="Enter a choice">
+      <p class="lead">Poll Choice 2:</p>
+      <input class="choice form-control" type="text" name="poll[choices][choice2]" placeholder="Enter a choice">
+      <p class="lead"></p>
+    </div>
+    <div class="form-group row">
+      <button class="new-choice btn btn-success" type="button" name="button">Add Poll Choice</button>
+    </div>
+    <div class="form-group row">
       <p>Poll defaults to close in one hour. Specificy a timeout below:</p>
-      <input class="" type="number" name="poll[timeout][number]" min="1" max="10">
-      <select class="" name="poll[timeout][units]">
+      <input class="form-control col-sm-1" type="number" name="poll[timeout][number]" min="1" max="10">
+      <select class="form-control col-sm-4" name="poll[timeout][units]">
         <option value=""></option>
         <option value="s">Seconds</option>
         <option value="m">Minutes</option>
@@ -28,12 +27,14 @@
         <option value="d">Days</option>
       </select>
     </div>
-    <br>
-    <br>
-    <input type="checkbox" name="poll[showRespondants]" value="true">Show poll respondants the results?
-    <br>
-    <br>
-    <input type="submit" value="Submit">
+    <div class="form-group row">
+      <label class="lead col-sm-5">Show poll respondants the results?
+      <input class="checkbox col-sm-1 form-control" type="checkbox" name="poll[showRespondants]" value="true">
+      </label>
+    </div>
+    <div class="form-group">
+      <input class="btn btn-primary" type="submit" value="Submit">
+    </div>
   </form>
 
 </div>
