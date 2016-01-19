@@ -111,6 +111,10 @@ describe('Poll', function () {
     expect(pollTwo.active).to.eql(false);
     done();
   });
+  it('checkForTimeout function returns the poll for chainability', function (done) {
+    expect(pollTwo.checkForTimeout()).to.eql(pollTwo);
+    done();
+  });
   it('checkForTimeout function will turn polls active attribute to false if past timeout', function (done) {
     pollTwo.active = true;
     pollTwo.timeout = moment().subtract(1, 'minute');
