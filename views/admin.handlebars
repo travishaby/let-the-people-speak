@@ -11,8 +11,11 @@ copy the poll link and send it to whoever you want to respond.</h5>
 </ul>
 
 <h3 id="poll-question">Results For: <strong>{{ poll.question }}</strong></h3>
-
-<button type="button" id="close-poll">Close Poll</button>
+  {{#if poll.active}}
+    <button type="button" id="close-poll">Close Poll</button>
+  {{else}}
+    <h3>This poll has closed.</h3>
+  {{/if}}
 <br>
 <div id="poll-results"></div>
 
