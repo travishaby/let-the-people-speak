@@ -7,7 +7,7 @@ $(document).ready(function(){
   $('.poll-choice').on('click', function() {
     var pollResponse = $(this).text();
     sendPollResponse(pollResponse);
-  });  
+  });
 })
 
 Array.prototype.last = function(){
@@ -26,6 +26,11 @@ function sendPollResponse(pollResponse) {
 
 socket.on('pollResponse-' + pollId, function(pollResponses){
   updatePollResultsOnPage(pollResponses);
+});
+
+socket.on('closePoll-' + pollId, function(message){
+  $('#poll-choice-buttons').remove();
+  $('#poll-message').text(message);
 });
 
 function updatePollResultsOnPage(pollResponses) {
