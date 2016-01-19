@@ -106,4 +106,9 @@ describe('Poll', function () {
     expect(pollTwo.active);
     done();
   });
+  it('has closePoll function that turns active to false', function (done) {
+    pollTwo.closePoll();
+    expect(pollTwo.active).to.eql(false);
+    done();
+  });
 })
